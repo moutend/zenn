@@ -3,4 +3,4 @@
 set -e
 
 npm init --yes
-yarn add install zenn-cli
+npm install -D zenn-cli
