@@ -7,14 +7,18 @@ published: true
 ---
 # はじめに
 
-以下の点に注意して読み進めてください。
+以下の点に注意して記事を読み進めてください。
 
-1. macOS 10.15.7 / Xcode 12.4で作業しました。
-2. Apple Developerの登録方法は説明しません。
-3. 無料アプリを前提に説明します。有料アプリの公開方法は説明しません。
-4. Apple DeveloperやAppStore Connectサイトの見た目は頻繁に変わります。そのため、あえてスクリーンショットは添付していません。
+1. この記事ではApple Developerの登録手順について説明しません。
+1. 無料アプリを前提に説明します。有料アプリの公開手順は説明しません。
+1. Apple DeveloperやAppStore Connectサイトの見た目は頻繁に変わります。そのため、あえてスクリーンショットは掲載していません。
 
-それでは、手順1から手順10まで順番に作業を進めてください。
+動作検証については以下の組み合わせで行いました。
+
+1. macOS 10.15.7 / Xcode 12.4
+1. macOS 11.3 / Xcode 12.5
+
+それでは、手順1から手順10まで順番に作業を進めましょう。
 
 # （手順1）アプリのスクリーンショットを撮影する
 
@@ -26,15 +30,15 @@ published: true
 
 ## （補足）スクリーンショットの画面サイズについて
 
-アプリの申請には5.5インチと6.5インチ、2種類のスクリーンショットが必要になります。枚数はそれぞれ1枚以上必要です。
+アプリの申請には6.5インチと5.5インチ、2種類のスクリーンショットが必要になります。枚数はそれぞれ1枚以上必要です。
 
-画面のサイズが5.5インチまたは6.5インチであれば、シミュレーターはどの機種を選んでも構いません。iPhoneの機種ごとの画面サイズについて、詳細は以下を確認してください。
+画面のサイズが6.5インチまたは5.5インチであれば、シミュレーターはどの機種を選んでも構いません。iPhoneの機種ごとの画面サイズについて、詳細は以下を確認してください。
 
 参考：[スクリーンショットのサイズ要件 - Apple](https://help.apple.com/app-store-connect/?lang=ja-jp#/devd274dd925)
 
 ## （補足）シミュレーターの言語設定について
 
-日本語のアプリを開発している場合、まずはシミュレーターの言語を設定してください。手順は以下のとおりです。
+シミュレーターが英語で表示されるときは言語の変更をしてください。手順は以下のとおりです。
 
 1. シミュレーターが起動したら`Command + Shift + H`を押してホーム画面に移動します。
 2. Settingsアプリを起動してGeneral→Languageを選択します。
@@ -70,13 +74,13 @@ published: true
 8. Createボタンを押すと、アプリの詳細情報を編集する画面が表示されます。
 9. おわり
 
-## （補足）App ID・Bundle ID・SKUについて
+## （補足）SKU・App ID・Bundle IDについて
 
-App IDはBundle IDの別名です。Apple DeveloperではApp IDと表示されていたり、AppStore ConnectではBundle IDと表示されていたり、表記方法が統一されていないようです。
+SKUはApple社がアプリの売り上げを管理するときに使用する名前です。SKUがユーザーに表示されることはありません。
 
-App ID（Bundle ID）はアプリの識別子です。一方、SKUはAppStoreでアプリを管理するための識別子です。売上などの管理用に使われるものであり、SKUはユーザーに表示されません。
+SKUに命名規則はありません。ただし、`App001`のように適当な名前をつけると紛らわしいので、おすすめしません。私の場合、Bundle IDが`com.example.MyApp`ならSKUは`ComExampleMyApp`のように設定しています。
 
-SKUに命名規則はありません。ただし、`App001`のように適当な名前は紛らわしいので、おすすめしません。私の場合、Bundle IDが`com.example.MyApp`ならSKUは`ComExampleMyApp`のように設定しています。
+App IDとBundle IDは同じものです。Apple DeveloperではApp IDと表示されていたり、AppStore ConnectではBundle IDと表示されていたり、表記が統一されていないようです。
 
 # （手順4）アプリの詳細情報を編集する
 
@@ -113,69 +117,57 @@ SKUに命名規則はありません。ただし、`App001`のように適当な
 4. 「＋」ボタンを押して新規作成します。
 5. AppStoreを選択してContinueボタンを押します。
 6. App IDとして手順2で作成したものを選択します。
-7. Select Certificatesと表示されたら手順5で作成したCertificateを選択します。
+7. Select Certificatesと表示されたら手順5で作成したCertificateを選択します。通常は有効期限として1年後の日付が表示されます。
 8. Provisioning Profile Nameに適当な名前を入力します。（例：`Provisioning Profile for My App`）
 9. Generateボタンを押します。
 10. Downloadボタンを押して`.mobileprovision`ファイルをダウンロードします。
 11. おわり
 
-# （手順7）アプリを検証する
+# （手順7）アプリをアップロードする
 
-1. Xcodeを起動してProducts→Archiveを選択します。
-2. しばらく待ちます。
-3. アーカイブ一覧画面が表示されたらValidate Appボタンを押します。
-4. Include bitcode for iOS contentにチェックを入れます。
-5. Upload your app's symbols to receive symbolicated reports from Appleにチェックを入れます。
-6. Nextボタンを押します。
-7. Manually manage signingを選択してNextボタンを押します。
-8. Distribution certificateとして手順5で作成したCertificateを選択します。
-9. Select Profile→Importを選択して、手順6で作成した`.mobileprovision`ファイルを選択します。
-10. Macのパスワードを入力します。
-11. アーカイブの詳細情報が表示されたらValidateボタンを押します。
-12 しばらく待ちます。
-13. 「App "MyApp" successfully validated.」のように表示されたら成功です。
-14. Doneボタンを押してダイアログを閉じます。
-15. おわり
+1. Xcodeを起動してProducts→Archiveを選択します。アーカイブ完了までしばらく待ちます。
+2. アーカイブ一覧画面が表示されたらDistribute Appボタンを押します。
+3. Select a destinationの中からUploadを選択してNextボタンを押します。
+4. 「Include bitcode for iOS content」と「Upload your app's symbols to receive symbolicated reports from Apple」にチェックを入れてNextボタンを押します。
+5. Manually manage signingを選択してNextボタンを押します。
+6. Distribution certificateとして手順5で作成したCertificateを選択します。
+7. Select Profile→Importを選択して、手順6で作成した`.mobileprovision`ファイルを選択します。
+8. Macのパスワードを入力します。
+9. アーカイブの詳細情報が表示されたらUploadボタンを押します。
+10 しばらく待ちます。
+11. 「App "MyApp" successfully uploaded.」のように表示されたら成功です。
+12. Doneボタンを押してXcodeを閉じます。
+13. おわり
 
 ## （補足）Bit codeとシンボルについて
 
-Bit codeはiOS 9から導入されたバイナリの中間表現です。この機能はアプリ配信の最適化に使われます。通常はチェックを入れたままで構いません。
+Bit codeはiOS 9から導入されたバイナリの中間表現です。この機能はアプリ配信の最適化に使われます。通常はチェックを入れたままでOKです。
 
-シンボルとはソースコードに含まれる変数やメソッドなどの名前のことです。シンボルとソースコードのファイル名や行番号の対応づけを行う場合、Upload your app's symbols ...にチェックを入れます。チェックを入れなければ不具合が発生したときにデバッグが困難になります。チェックを外すのはお勧めしません。
+シンボルとはソースコードに含まれる変数やメソッドなどの名前のことです。シンボルとソースコードのファイル名や行番号の対応づけを行う場合、Upload your app's symbols ...にチェックを入れます。チェックを入れなければ不具合が発生したときのデバッグが困難になります。チェックを外すのはお勧めしません。
 
-# （手順8）アプリをアップロードする
+## （補足）アップロードをやり直す
 
-1. 手順7が成功するとアーカイブ一覧画面に戻ります。
-2. Distribute Appボタンを押します。
-3. Select a destinationの中からUploadを選択してNextボタンを押します。
-4. Include bitcode for iOS contentにチェックを入れます。
-5. Upload your app's symbols to receive symbolicated reports from Appleにチェックを入れます。
-6. Nextボタンを押します。
-7. Manually manage signingを選択してNextボタンを押します。
-8. Distribution certificateとして手順5で作成したCertificateを選択します。
-9. Select Profile→Importを選択して、手順6で作成した`.mobileprovision`ファイルを選択します。
-10. Macのパスワードを入力します。
-11. アーカイブの詳細情報が表示されたらUploadボタンを押します。
-12 しばらく待ちます。
-13. 「App "MyApp" successfully uploaded.」のように表示されたら成功です。
-14. Doneボタンを押してXcodeを閉じます。
-15. おわり
+アップロードが完了した後にアプリの不備に気づくことがあります。そんなときは焦らずアップロードをやり直しましょう。手順は以下のとおりです。
 
-## （補足）アップロードをやり直したい
+1. アーカイブ一覧画面が表示されている場合は閉じてください。
+2. アプリの修正作業をします。
+3. 修正が終わったら画面左側のファイル一覧から`.xcodeproj`を選択します。
+4. General→Identity→Buildを確認します。
+5. 現在のビルド番号が1であれば2に書き換えます。
+6. 手順7にしたがって、もう一度アップロードを行います。
+7. おわり
 
-どんなに気をつけていても、メール送信した直後に誤字脱字を発見することがあります。アプリ開発も同じです。完成したと思っていたら、アップロード直後に不具合を発見することがあります。そんなときは焦らずアップロードをやり直しましょう。
+## アイコンの背景色について
 
-一度アップロードした内容を削除したり上書きすることはできません。ビルド番号を変更して再アップロードを行ってください。手順は以下のとおりです。
+アプリをアップロードすると「ITMS-90717:" Invalid App Store Icon. The app store icon in the asset catalog in can't be transparent nor contain an alpha channel."」と表示される場合があります。
 
-1. アーカイブ一覧画面を閉じます。
-2. 画面左側のファイル一覧から`.xcodeproj`を選択します。
-3. General→Identity→Buildを編集します。
-4. 現在のビルド番号が1であれば2に書き換えます。
-5. 手順8にしたがって、もう一度アップロードを行います。
+AppStoreに表示されるPNG画像（1024 x 1024）については透明な色が許可されていません。そのため、1ピクセルでも透明な色が使われていると上記のエラーが発生します。
 
-# （手順9）アプリのビルド情報を編集する
+なお、アプリのアイコン画像については透明な色が使われていてもエラーは発生しません。
 
-1. 手順8が完了したら、しばらく待ちます。
+# （手順8）アプリのビルド情報を編集する
+
+1. 手順7が完了したら、しばらく待ちます。
 2. 「App Store Connect: Version 1.0 (1) for MyApp has completed processing.」のような件名のメールが届きます。
 3. メールが届いたら、Safariを起動して[AppStore Connect](https://appstoreconnect.apple.com)を開きます。
 4. My Appを選択します。
@@ -189,17 +181,13 @@ Bit codeはiOS 9から導入されたバイナリの中間表現です。この�
 
 ## （補足）Export Compliance Informationについて
 
-アプリがHTTPSなどの暗号化通信を行っている場合はYES、そうでなければNOを選択します。しかし、通常はNOを選択すれば問題ないはずです。なぜなら他のプラットフォーム、例えばGoogle Play Storeの場合は暗号化通信についての申告は必要ないためです。
+アプリが暗号化通信を行っている場合はYES、そうでなければNOを選択します。通常はNOを選択します。
 
-文字どおり解釈するのであれば、画像をHTTPSのGETリクエストで取得するだけでも輸出規制の暗号化通信に該当します。Appleが厳しいのか、Googleが緩いのか、実際のところはわかりません。
+[参考：iOSアプリ提出の輸出コンプライアンスで、通信にHTTPSを使っているだけの場合の解釈 - Qiita](https://qiita.com/osamu1203/items/35df25d93e9d12b11222)
 
-なお、回答としてNOを選択した結果、不都合が生じても私は一切責任を負いません。回答は各自の責任で判断してください。
+# （手順9）アプリを申請する
 
-参考：[iOSアプリ提出の輸出コンプライアンスで、通信にHTTPSを使っているだけの場合の解釈 - Qiita](https://qiita.com/osamu1203/items/35df25d93e9d12b11222)
-
-# （手順10）アプリを申請する
-
-1. 手順9が完了したら、Submit for Reviewボタンを押します。
+1. 手順8が完了したら、Submit for Reviewボタンを押します。
 2. 「MyApp is now "Waiting for Review", ...」というメールが届きます。
 3. しばらく待ちます。審査が開始されるまで数時間から数日かかる場合があります。
 4. 「MyApp is now "In Review" ...」というメールが届きます。
