@@ -3,7 +3,7 @@ title: "Go言語が好きな理由"
 emoji: "💬"
 type: "tech"
 topics: Go 視覚障害]
-published: false
+published: true
 ---
 # はじめに
 
