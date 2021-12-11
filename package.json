@@ -1,0 +1,23 @@
+{
+  "name": "zenn",
+  "version": "1.0.0",
+  "description": "The repository for managing my articles on zenn.dev. To read the articles, visit [zenn.com/moutend](https://zenn.dev/moutend).",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://moutend@github.com/moutend/zenn.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/moutend/zenn/issues"
+  },
+  "homepage": "https://github.com/moutend/zenn#readme",
+  "dependencies": {
+    "zenn-cli": "^0.1.99"
+  }
+}
