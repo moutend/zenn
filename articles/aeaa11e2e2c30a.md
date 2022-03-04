@@ -22,9 +22,7 @@ published: true
 
 # カスタムアクションは最後に定義したものから順番に読み上げされる
 
-ここから本題です。カスタムアクションはSwiftUIのAccessibility Modifierとして定義されている`.accessibilityAction`を利用して設定することが可能です。
-
-以下に実装例を示します。
+ここから本題です。カスタムアクションはSwiftUIの`.accessibilityAction()`を利用して設定することが可能です。以下に実装例を示します。
 
 ```swift
 struct ContentView: View {
