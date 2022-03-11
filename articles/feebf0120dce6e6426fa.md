@@ -124,7 +124,10 @@ App IDとBundle IDは同じものです。Apple DeveloperではApp IDと表示�
 
 1. 画面左側のメニューからApp Privacyを選択します。
 2. アプリのプライバシーポリシーを記載したページのURLを設定します。個人情報を収集しないアプリの場合もその旨を記載したページを作成することをお勧めします。
-3. Saveボタンを押して内容を保存したら手順8へ進んでください。
+3. Get Startedボタンを押して個人情報の収集に関連する質問に回答します。
+4. 「Do you or your third-party partners collect data from this app?」について、個人情報を収集して第三者に渡すことがなければ「No , we do not collect data from this app」を選択します。
+5. Publishボタンを押して入力内容を確定させます。ここまでの作業が完了したら一度Safariを閉じてください。
+6. おわり
 
 # （手順8）アプリをアップロードする
 
