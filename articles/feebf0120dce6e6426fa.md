@@ -79,7 +79,7 @@ iPhone向けアプリの申請には5.5インチと6.5インチ、2種類のス�
 
 ## （補足）SKU・App ID・Bundle IDについて
 
-SKUはApple社がアプリの売り上げを管理するとき内部的に使用する名前です。SKUがユーザーに表示されることはありません。
+SKU（Stock Keeping Unit：在庫管理単位）はApple社がアプリの売り上げを管理するとき内部的に使用する名前です。SKUがユーザーに表示されることはありません。アプリが無料化有料化に関わらず、SKUの設定は必須です。
 
 SKUに命名規則はありません。自由に名前を決めることができます。ただし、`App001`のように適当な名前をつけると紛らわしいので、おすすめしません。私の場合、Bundle IDが`com.example.MyApp`ならSKUは`ComExampleMyApp`のように設定しています。
 
@@ -126,7 +126,7 @@ App IDとBundle IDは同じものです。Apple DeveloperではApp IDと表示�
 2. アーカイブ一覧画面が表示されたらDistribute Appボタンを押します。
 3. Select a destinationの中からUploadを選択してNextボタンを押します。
 4. 「Include bitcode for iOS content」と「Upload your app's symbols to receive symbolicated reports from Apple」にチェックを入れてNextボタンを押します。
-5. 署名の設定についてAutomaticを選択してNextボタンを押します。
+5. 「"アプリ名" needs to be signed for App Store Connect distribution.」と質問されたらAutomatically manage signingを選択します。
 6. アーカイブの詳細情報が表示されたらUploadボタンを押します。アップロードが終わるまで待ちます。
 7. 「App "MyApp" successfully uploaded.」のように表示されたら成功です。Doneボタンを押してXcodeを閉じてください。
 8. おわり
