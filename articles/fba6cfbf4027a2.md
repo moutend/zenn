@@ -1,5 +1,5 @@
 ---
-title: （iOS）HealthKitを使って体重記録アプリを作ろう
+title: （iOS）HealthKitを使って体重記録アプリを作る
 emoji: "👌"
 type: "tech"
 topics: [iOS HealthKit SwiftUI ヘルスケア]
@@ -7,22 +7,21 @@ published: false
 ---
 # はじめに
 
-HealthKitの使い方を学習するための足がかりとして、簡単な体重記録アプリを作ることにしました。この記事ではその実装手順を説明します。
+HealthKitの使い方を学習するための足がかりとして、簡単な体重記録アプリを作ることにしました。体重をピッカーで選び、記録ボタンを押すとヘルスケアにデータが記録されるアプリです。
 
-この記事で作成するのは体重をピッカーで選び、記録ボタンを押すとヘルスケアに記録される、というアプリです。本当はBluetooth体重計と連携したいのですが、まずはヘルスケアに体重を記録する処理にフォーカスして実装します。
+# 環境
 
-なお、この記事で説明している内容については以下の環境で動作検証しました。
+この記事で説明する内容は以下の環境で開発と動作検証を行いました。
 
+- macOS Monterey 12.6.1
 - Xcode 14.0.1 (14A400)
 - iOS 15.7
 
 # （Step 1.）プロジェクトの作成
 
-プロジェクトの作成手順は普段と変わりません。Xcodeを起動してFile→New→Projectを選択してください。
+プロジェクトの作成手順は普段と変わりません。Xcodeを起動してFile→New→Projectを選択してください。インターフェースはSwiftUIを選んでください。
 
 # （Step 2.）HealthKit Entitlementの設定
-
-たかが体重の記録とあなどるなかれ、ここから面倒になります。
 
 1. プロジェクトのSigning & Capabilitiesタブを選択します。
 2. Addボタンを押すと検索フィールドが表示されます。「healthkit」と入力してリターンキーを押してください。
@@ -30,46 +29,39 @@ HealthKitの使い方を学習するための足がかりとして、簡単な�
 
 # （Step 3.）Information Property Listの設定
 
-Xcode 13からInfo.plistが廃止されてプロジェクト画面から設定するようになりました。その点だけ注意してください。
-
 1. プロジェクトのInfoタブを選択します。
 2. Custom iOS Target Propertiesの表があります。どこでも構わないので、表の上で右クリック→Add rowを選択して行を追加してください。
-3. キーは`NSHealthUpdateUsageDescription`と入力してリターンキーを押します。するとキーの名前が「Privacy - Health Update Usage Description」に自動補完されます。
-5. キーの値としてヘルスケアのデータの利用目的を入力すれば設定完了です。これでHealthKitが利用できるようになりました。
+3. キーに`NSHealthUpdateUsageDescription`と入力してリターンキーを押します。するとキーの名前が「Privacy - Health Update Usage Description」に自動補完されます。
+4. キーの値としてヘルスケアのデータの利用目的を入力すれば設定完了です。これでHealthKitが利用できるようになりました。
 
 ## いい加減な利用目的を設定するとアプリがクラッシュする
 
-利用目的として「for testing」のようにいい加減な説明文を設定するとアプリがクラッシュします。私の環境では以下のようなエラーメッセージが表示されました。
+「for testing」のようにいい加減な利用目的を設定するとアプリがクラッシュします。私の環境では以下のようなエラーメッセージが表示されました。
 
 ```
 Terminating app due to uncaught exception 'NSInvalidArgumentException', reason: 'The string "for testing" is an invalid value for NSHealthUpdateUsageDescription'
 ```
 
-上記のエラーはデバッグ用のビルドでも発生します。エラーを回避するにはリリースを想定した説明文、例えば「体重の変化を記録するためヘルスケアの利用を許可してください」といった説明文を設定してください。
+上記のエラーはデバッグ用のビルドでも発生します。エラーを回避するにはリリースを想定した説明文、例えば「体重の変化を記録するためヘルスケアの利用を許可してください」といった内容を設定してください。
 
-Apple Developerのドキュメントでは言及されていませんし、どのような内容がいい加減な説明文として判定されるのかは不明です。Xcodeのバージョンによって挙動が変化するかもしれませんし、もし同様のエラーが発生した場合は各自で説明文を見直してみてください。
+この挙動について、Apple Developerのドキュメントには説明が見当たりません。そのため、どのような内容がいい加減な説明文として判定されるのかは不明です。
+
+Xcodeのバージョンによって挙動が変化するかもしれませんし、もし同様のエラーが発生した場合は説明文の内容を見直してみてください。
 
 # （Step 4.）アプリの実装
 
-ようやくアプリの実装に着手できます。ヘルスケアに体重を記録する流れは以下のようになります。
+ヘルスケアに体重データを記録する流れは以下のようになります。
 
 1. HKHealthStoreのインスタンスを作成する。
 2. HKHealthStoreのrequestAuthorizationメソッドを呼び出してヘルスケアの利用許可を得る。
 3. 体重が記録されたサンプルを作成する
 4. HKHealthStoreのsaveメソッドにサンプルを渡してヘルスケアに保存する。
 
-ヘルスケアについて軽く説明します。ヘルスケアに保存できるデータは4種類あります。
+HealthKitで扱うデータは時系列データです。そのため用語としてサンプルを使っています。詳しくはこの記事の最後にまとめているApple Developerのドキュメントを参照してください。
 
-1. Category Samples ... 血液型や生年月日など基本的に変化しないデータ
-2. Quantity Samples ... 体重や心拍数などの時系列データ
-3. Correlations ... 1つ以上のサンプルが含まれた混合データ
-4. Workouts ... ランニングや水泳などの運動データ
+といっても難しいことはありません。HealthKitで扱うのは値・測定開始日時・測定終了日時を格納するだけのシンプルなデータ構造です。
 
-ここでのサンプルは時系列における標本を意味します。
-
-体重や心拍数はともかく血液型などもサンプルとして扱われているのはやや違和感がありますが、例えば血液型であれば骨髄移植で変化する可能性があるためサンプルとして扱われているようです。
-
-話が長くなりました。今回の目的である体重の記録は2番目のQuantity Samplesに該当します。詳細についてはApple Developerの[About the HealthKit Framework](https://developer.apple.com/documentation/healthkit/about_the_healthkit_framework)を参照してください。
+測定の日時が開始日時と終了日時に分かれているのは、心拍数のようにある一定の時間測定を続ける必要があるものに対応するためです。体重のように一瞬で測定できるものは開始日時と終了日時に同じ日時を格納します。
 
 ## 実装例
 
@@ -80,13 +72,9 @@ import HealthKit
 import SwiftUI
 
 class BodyScale {
-  private var healthStore: HKHealthStore?
+  private var healthStore: HKHealthStore
 
   init() {
-    // guard HKHealthStore.isHealthDataAvailable() else {
-    //  fatalError("This app requires a device that supports HealthKit")
-    // }
-
     self.healthStore = HKHealthStore()
   }
   func requestAuthorization(completion: @escaping (Bool, Error?) -> Void) {
@@ -94,17 +82,11 @@ class BodyScale {
       HKObjectType.quantityType(forIdentifier: .bodyMass)!
     ])
 
-    self.healthStore?.requestAuthorization(toShare: sampleTypes, read: nil, completion: completion)
+    self.healthStore.requestAuthorization(toShare: sampleTypes, read: nil, completion: completion)
   }
   func authorizationStatus() -> HKAuthorizationStatus {
-    guard
-      let status = self.healthStore?.authorizationStatus(
-        for: HKObjectType.quantityType(forIdentifier: .bodyMass)!)
-    else {
-      return .notDetermined
-    }
-
-    return status
+    return self.healthStore.authorizationStatus(
+      for: HKObjectType.quantityType(forIdentifier: .bodyMass)!)
   }
   func save(kilogram weight: Double, completion: @escaping (Bool, Error?) -> Void) {
     let now = Date.now
@@ -117,7 +99,7 @@ class BodyScale {
       start: now,
       end: now)
 
-    self.healthStore?.save(sample, withCompletion: completion)
+    self.healthStore.save(sample, withCompletion: completion)
   }
 }
 
@@ -214,17 +196,22 @@ struct ContentView_Previews: PreviewProvider {
 }
 ```
 
-## 動作確認
+# （Step 5.）動作確認
 
-上記のコードを保存して`Command + R`で実行します。
+準備は整いました。それでは`Command + R`でアプリを実行しましょう。アプリの操作を迷うことはないかもしれませんが、手順を示します。
 
-実機で確認が終わったらヘルスケアのアプリを開いて、体重のデータおを削除してください。
+1. 「ヘルスケアの設定に進む」ボタンを押すと許可を求めるダイアログが表示されます。体重の許可をONにしてください。
+2. ピッカーで体重を選びます。
+3. 「体重を記録」ボタンを押します。
+4. ヘルスケアに体重のデータが記録されます。成功するとアラートが表示されます。
+
+実機で動作確認する場合、体重データの削除をお忘れなく。ヘルスケアアプリを開いてブラウズ→身体測定値→体重→すべてのデータから該当のデータを削除してください。
 
 ## 実装の注意点
 
-# まとめ
+HealthKitに限った話ではありませんが、ヘルスケアのアクセス許可はいつでも取り消すことができます。saveメソッドが失敗した場合に備えて、アクセス許可の状態を毎回確認する必要があります。
 
-体重を記録するだけなのに
+また、requestAuthorizationメソッドのコールバックに渡されるsuccessはあくまでダイアログが正しく表示できたかを示すパラメータです。アクセスを拒否してもsuccessはtrueになります。
 
 # 参考資料
 
