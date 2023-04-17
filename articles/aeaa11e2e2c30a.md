@@ -1,18 +1,18 @@
 ---
-title: "[SwiftUI] accessibilityActionで設定したカスタムアクションをVoiceOverが読み上げる順番について"
+title: "（SwiftUI）accessibilityActionで設定したカスタムアクションをVoiceOverが読み上げる順番について"
 emoji: "📌"
 type: "tech"
-topics: [iOS VoiceOver SwiftUI a11y]
+topics: [SwiftUI, iOS, VoiceOver, アクセシビリティ]
 published: true
 ---
-# はじめに
+## はじめに
 
 以下の環境で動作検証しました。
 
 - Xcode 13.2.1 (13C100)
 - iOS 15.3.1
 
-# カスタムアクションとは
+## カスタムアクションとは
 
 カスタムアクションとはVoiceOverの上下スワイプで項目を選択して、その後にダブルタップで実行する機能です。
 
@@ -20,7 +20,7 @@ published: true
 
 カスタムアクションは複数割り当てることが可能です。例えばiOS版のGmailアプリはカスタムアクションとして「アーカイブ」「スターをつける・外す」「選択と未選択を切り替える」の3つが設定されています。
 
-# カスタムアクションは最後に定義したものから順番に読み上げされる
+## カスタムアクションは最後に定義したものから順番に読み上げされる
 
 ここから本題です。カスタムアクションはSwiftUIの`.accessibilityAction()`を利用して設定することが可能です。以下に実装例を示します。
 
@@ -49,7 +49,7 @@ struct ContentView: View {
 
 ただし、Apple Developerのドキュメントにはカスタムアクションの読み上げ順についての説明がありません。従って、現状の挙動が将来に渡って保証されるとは限りません。
 
-# 余談
+## 余談
 
 カスタムアクションは便利です。しかし、大量のカスタムアクションを設定すると目的の機能に到達するまでひたすら上下スワイプすることになります。
 
@@ -57,6 +57,6 @@ struct ContentView: View {
 
 この場合、Accessibility Modifierの`.accessibilityAdjustableAction()`を利用するべきです。VoiceOverカーソルが当たっている状態で上下スワイプすると即座に任意の処理が実行できます。さらに、`.accessibilityValue()`を組み合わせることでスワイプに対する結果を即座に読み上げさせることも可能です。
 
-# 参考資料
+## 参考資料
 
 1. [Accessibility Modifiers - Apple Developer](https://developer.apple.com/documentation/swiftui/view-accessibility)
