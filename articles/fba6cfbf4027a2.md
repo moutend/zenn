@@ -1,15 +1,15 @@
 ---
-title: （iOS）HealthKitを使って体重記録アプリを作る
+title: "（iOS）HealthKitを使って体重記録アプリを作る"
 emoji: "👌"
 type: "tech"
-topics: [iOS HealthKit SwiftUI ヘルスケア]
+topics: [iOS, Swift, SwiftUI, Apple, HealthKit]
 published: true
 ---
-# はじめに
+## はじめに
 
 HealthKitの使い方を学習するための足がかりとして、簡単な体重記録アプリを作ることにしました。体重をピッカーで選び、記録ボタンを押すとヘルスケアにデータが記録される、というものです。
 
-# 環境
+## 環境
 
 この記事で説明する内容は以下の環境で開発と動作検証を行いました。
 
@@ -17,24 +17,24 @@ HealthKitの使い方を学習するための足がかりとして、簡単な�
 - Xcode 14.0.1 (14A400)
 - iOS 15.7
 
-# （Step 1.）プロジェクトの作成
+## （Step 1.）プロジェクトの作成
 
 プロジェクトの作成手順は普段と変わりません。Xcodeを起動してFile→New→Projectを選択してください。インターフェースはSwiftUIを選んでください。
 
-# （Step 2.）HealthKit Entitlementの設定
+## （Step 2.）HealthKit Entitlementの設定
 
 1. プロジェクトのSigning & Capabilitiesタブを選択します。
 2. Addボタンを押すと検索フィールドが表示されます。「healthkit」と入力してリターンキーを押してください。
 3. Capabilities一覧にHealthKitが追加されました。今回は体重の記録のみ行うため「Clinical Health Records」と「Background Delivery」のチェックは不要です。
 
-# （Step 3.）Information Property Listの設定
+## （Step 3.）Information Property Listの設定
 
 1. プロジェクトのInfoタブを選択します。
 2. Custom iOS Target Propertiesの表があります。どこでも構わないので、表の上で右クリック→Add rowを選択して行を追加してください。
 3. キーに`NSHealthUpdateUsageDescription`と入力してリターンキーを押します。するとキーの名前が「Privacy - Health Update Usage Description」に自動補完されます。
 4. キーの値としてヘルスケアのデータの利用目的を入力すれば設定完了です。これでHealthKitが利用できるようになりました。
 
-## いい加減な利用目的を設定するとアプリがクラッシュする
+### いい加減な利用目的を設定するとアプリがクラッシュする
 
 「for testing」のようにいい加減な利用目的を設定するとアプリがクラッシュします。私の環境では以下のようなエラーメッセージが表示されてアプリがクラッシュしました。
 
@@ -48,7 +48,7 @@ Terminating app due to uncaught exception 'NSInvalidArgumentException', reason: 
 
 （追記 2022-11-24）iOS 15.7.1にアップデートしたところ上記のエラーは発生しなくなりました。説明文の判定ロジックはSDKではなくランタイムに含まれているようです。
 
-# （Step 4.）アプリの実装
+## （Step 4.）アプリの実装
 
 ヘルスケアに体重データを記録する流れは以下のようになります。
 
@@ -63,7 +63,7 @@ HealthKitで扱うデータは時系列データです。そのため用語と�
 
 測定の日時が開始日時と終了日時に分かれているのは、心拍数のようにある一定の時間測定を続ける必要があるものに対応するためです。体重のように一瞬で測定できるものは開始日時と終了日時に同じ日時を格納します。
 
-## 実装例
+### 実装例
 
 以下にアプリの実装例を示します。ContentView.swiftを以下のコードに置き換えてください。
 
@@ -198,7 +198,7 @@ struct ContentView_Previews: PreviewProvider {
 }
 ```
 
-# （Step 5.）動作確認
+## （Step 5.）動作確認
 
 準備は整いました。それでは`Command + R`でアプリを実行しましょう。アプリの操作を迷うことはないかもしれませんが、手順を示します。
 
@@ -209,14 +209,14 @@ struct ContentView_Previews: PreviewProvider {
 
 実機で動作確認する場合、体重データの削除をお忘れなく。ヘルスケアアプリを開いてブラウズ→身体測定値→体重→すべてのデータから該当のデータを削除してください。
 
-## 実装の注意点
+### 実装の注意点
 
 HealthKitに限った話ではありませんが、ヘルスケアのアクセス許可はいつでも取り消すことができます。saveメソッドが失敗した場合に備えて、アクセス許可の状態を毎回確認する必要があります。
 
 また、requestAuthorizationメソッドのコールバックに渡されるsuccessはあくまでダイアログが正しく表示できたかを示すパラメータです。アクセスを拒否してもsuccessはtrueになります。
 
-# 参考資料
+## 参考資料
 
-- [Getting started with HealthKit - WWDC20 - Videos - Apple Developer](https://developer.apple.com/videos/play/wwdc2020/10664/)
-- [About the HealthKit Framework - Apple Developer](https://developer.apple.com/documentation/healthkit/about_the_healthkit_framework)
-- [Setting Up HealthKit - Apple Developer](https://developer.apple.com/documentation/healthkit/setting_up_healthkit)
+1. [Getting started with HealthKit - WWDC20 - Videos - Apple Developer](https://developer.apple.com/videos/play/wwdc2020/10664/)
+2. [About the HealthKit Framework - Apple Developer](https://developer.apple.com/documentation/healthkit/about_the_healthkit_framework)
+3. [Setting Up HealthKit - Apple Developer](https://developer.apple.com/documentation/healthkit/setting_up_healthkit)
