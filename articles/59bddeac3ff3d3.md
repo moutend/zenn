@@ -92,16 +92,28 @@ Bundle IDとApp IDはIPアドレスとドメイン名のような関係だと考
 
 1. Safariで[AppStore Connect](https://appstoreconnect.apple.com)を開きます。
 2. My Appを選択します。
-3. Appsの隣にある「+」ボタンを押すと新規作成ダイアログが表示されます。
+3. Appsの右側にある「+」ボタンを押すと新規作成ダイアログが表示されます。
 4. プラットフォームとしてiOSにチェックをつけます。
 5. アプリの名前を入力します。すでにAppStoreで使われている名前を指定することはできません。
 6. Bundle IDとして手順2で確認したApp IDを選択します。
-6. SKUを入力します。詳細は次の補足を読んでください。
-7. 言語を設定します。
-8. User AccessとしてFull Accessを選択します。
+7. SKUを入力します。詳細は次の補足を読んでください。
+8. 言語を設定します。User AccessとしてFull Accessを選択します。
 9. Createボタンを押します。成功すると、アプリの一般情報を編集する画面に移動します。
 
 この手順は以上で終わりです。Safariを開いたまま、手順4へ進んでください。
+
+### （補足）EUのデジタルサービス法（DSA：Digital Services Act）コンプライアンス」の回答について
+
+はじめてAppStore Connectサイトを開くと、EUのDSAコンプライアンスに解凍するようメッセージが表示されます。おそらく、解凍しなければアプリ作成画面に進めないはずです。
+
+この記事を読まれている方は日本のAppStoreにアプリを公開しようと考えているはずです。通常は「I'm not a trader under the DSA or I don't plan to distribute in the EU」を選択すれば問題ありません。
+
+なお、コンプライアンスの同意状況はAppStore ConnectのBusinessリンクを開くと確認できます。
+
+参考資料
+
+- [Manage European Union Digital Services Act trader requirements - App Store Connect - Help - Apple Developer](https://developer.apple.com/help/app-store-connect/manage-compliance-information/manage-european-union-digital-services-act-trader-requirements/)
+- [EUのデジタルサービス法(DSA)による「デジタルサービス法のコンプライアンス」の選択について #DSA法 - Qiita](https://qiita.com/y-matsumoto/items/75fe8f734b9d0c0b5355)
 
 ### （補足）SKUについて
 
