@@ -1,19 +1,19 @@
 ---
-title: "（2024年版）iOSアプリをAppStoreで公開する手順まとめ"
+title: "（2024年版）iOSアプリをApp Storeで公開する手順まとめ"
 emoji: "✨"
 type: "tech"
-topics: [iOS, iPhone, アプリ開発, Apple, AppStore]
+topics: [iOS, iPhone, アプリ開発, Apple, App Store]
 published: true
 ---
 ## はじめに
 
-iOSアプリをAppStoreで公開する手順をまとめました。アプリ開発初心者の頃に知りたかった点を中心に説明しますので、お役に立てたら幸いです。
+iOSアプリをApp Storeで公開する手順をまとめました。アプリ開発初心者の頃に知りたかった点を中心に説明しますので、お役に立てたら幸いです。
 
 以下の点に注意して読み進めてください。
 
 1. Apple Developerの登録手順については説明しません。登録が完了した後に本記事を読み進めてください。
 2. 無料アプリについて説明します。有料アプリの公開手順については説明しません。
-3. 記事の公開後にApple DeveloperやAppStore Connectサイトの外観が変わるかもしれません。そのため、あえてスクリーンショットは掲載していません。
+3. 記事の公開後にApple DeveloperやApp Store Connectサイトの外観が変わるかもしれません。そのため、あえてスクリーンショットは掲載していません。
 4. iOSネイティブアプリを前提に説明します。Flutterなどのクロスプラットフォーム対応フレームワークを用いて開発されている場合、参考にならないかもしれません。
 
 ## 環境
@@ -35,13 +35,13 @@ iOSアプリをAppStoreで公開する手順をまとめました。アプリ開
 4. Signing Certificateが「Apple Development: Taro Yamada」のように表示されていることを確認します。名前は仮の値ですので各自の名前に読み替えてください。
 5. Profile Infoボタンを押します。警告やエラーが表示されていなければ問題ありません。
 
-証明書やプロファイルの管理でトラブルが発生している場合、申し訳ありませんが解説の範囲外です。各自で対処した後、AppStore公開の手順に進んでください。
+証明書やプロファイルの管理でトラブルが発生している場合、申し訳ありませんが解説の範囲外です。各自で対処した後、App Store公開の手順に進んでください。
 
-## AppStore公開手順
+## App Store公開手順
 
 それでは、手順1から手順10まで順番に作業を進めましょう。
 
-## （手順1）AppStore提出用のスクリーンショットを撮影する
+## （手順1）App Store提出用のスクリーンショットを撮影する
 
 1. Xcodeでプロジェクトを開いてProducts→Destinationを選択します。
 2. iPhone 8 Plusを選択します。選択肢にない場合、メニューの最後にある「Add Additional Simulators …」からデバイスを追加してください。
@@ -75,7 +75,7 @@ iOSアプリをAppStoreで公開する手順をまとめました。アプリ開
 ## （手順2）App IDがApple Developerサイトに同期されていることを確認する
 
 1. Safariを起動して[Apple Developerのサイト](https://developer.apple.com/account/#/welcome)を開きます。
-2. Identifiersを選択します。AppStoreに提出するアプリのBundle IDが一覧の中に表示されていることを確認します。
+2. Identifiersを選択します。App Storeに提出するアプリのBundle IDが一覧の中に表示されていることを確認します。
 3. おわり
 
 ### （補足）Apple DeveloperのIdentifiersにBundle IDが表示されない場合
@@ -86,19 +86,19 @@ iOSアプリをAppStoreで公開する手順をまとめました。アプリ開
 
 ### （補足）Bundle IDとApp IDについて
 
-Bundle IDは`com.example.MyApp`のような書式の文字列であり、アプリの識別に使用されます。AppStoreに公開するBundle IDは世界中でただひとつ存在し、重複は許されません。
+Bundle IDは`com.example.MyApp`のような書式の文字列であり、アプリの識別に使用されます。App Storeに公開するBundle IDは世界中でただひとつ存在し、重複は許されません。
 
-App IDは「My Cool App」のようなBundle IDに紐づく文字列です。Apple DeveloperとAppStore Connectのサイト上でアプリを識別するために使用されます。
+App IDは「My Cool App」のようなBundle IDに紐づく文字列です。Apple DeveloperとApp Store Connectのサイト上でアプリを識別するために使用されます。
 
-Bundle IDとApp IDはIPアドレスとドメイン名のような関係だと考えてください。App IDはAppStoreに表示されないため、ユーザーが知ることはありません。
+Bundle IDとApp IDはIPアドレスとドメイン名のような関係だと考えてください。App IDはApp Storeに表示されないため、ユーザーが知ることはありません。
 
 Xcodeでプロファイルを自動管理している場合、App IDの初期値として「XC com example MyApp」のような文字列が設定されます。この文字列はApple DeveloperのIdentifiersページでいつでも自由に変更できます。
 
-Bundle IDは原則として、一度アプリがAppStoreに公開されると変更できません。希望の名前がすでに使われているからと言って、`com.example.tmp12345`のように適当な値を設定すると、後々紛らわしいので慎重に設定することをお勧めします。
+Bundle IDは原則として、一度アプリがApp Storeに公開されると変更できません。希望の名前がすでに使われているからと言って、`com.example.tmp12345`のように適当な値を設定すると、後々紛らわしいので慎重に設定することをお勧めします。
 
-## （手順3）アプリをAppStore Connectに登録する
+## （手順3）アプリをApp Store Connectに登録する
 
-1. Safariで[AppStore Connect](https://appstoreconnect.apple.com)を開きます。
+1. Safariで[App Store Connect](https://appstoreconnect.apple.com)を開きます。
 2. My Appを選択します。
 3. Appsの右側にある「+」ボタンを押すと新規作成ダイアログが表示されます。
 4. プラットフォームとしてiOSにチェックをつけます。
@@ -112,11 +112,11 @@ Bundle IDは原則として、一度アプリがAppStoreに公開されると変
 
 ### （補足）EUのデジタルサービス法（DSA：Digital Services Act）コンプライアンス」の回答について
 
-2024年の3月以降、AppStore Connectサイトを開くとEUのDSAコンプライアンスに解凍するようメッセージが表示されます。おそらく、解凍しなければアプリ作成画面に進めません。
+2024年の3月以降、App Store Connectサイトを開くとEUのDSAコンプライアンスに解凍するようメッセージが表示されます。おそらく、解凍しなければアプリ作成画面に進めません。
 
-この記事を読まれている方は日本のAppStoreにアプリを公開しようと考えているはずです。その場合は「I'm not a trader under the DSA or I don't plan to distribute in the EU」を選択すれば問題ありません。
+この記事を読まれている方は日本のApp Storeにアプリを公開しようと考えているはずです。その場合は「I'm not a trader under the DSA or I don't plan to distribute in the EU」を選択すれば問題ありません。
 
-なお、コンプライアンスの同意状況はAppStore ConnectのBusinessリンクを開くと確認できます。
+なお、コンプライアンスの同意状況はApp Store ConnectのBusinessリンクを開くと確認できます。
 
 参考資料
 
@@ -134,7 +134,7 @@ SKUに命名規則はありません。自由に名前を決めることがで�
 1. 手順1で作成したスクリーンショットを設定してください。iPhoneアプリの場合、iPadのスクリーンショットは設定不要です。
 2. Promotional Text（アプリのキャッチコピー）を入力します。
 3. Description（アプリの説明）を入力します。
-4. Keywords（AppStoreの検索キーワード）を入力します。「aaa,bbb,ccc」のようにカンマ区切りで入力します。
+4. Keywords（App Storeの検索キーワード）を入力します。「aaa,bbb,ccc」のようにカンマ区切りで入力します。
 5. Support URL（アプリの公式サイトURL）を入力します。私の場合はGitHub Pagesを利用してアプリの説明ページを作成しました。X（旧twitterアカウントのURLなどでも構わないようです。
 6. Buildは設定せず空欄のままにします。
 7. Sign-In Informationを設定します。ログイン不要で使えるアプリの場合は「Sign-in required」のチェックを外します。
@@ -200,7 +200,7 @@ iPhone用アプリにもかかわらず、iPadのスクリーンショットが�
 
 アプリをアップロードすると「ITMS-90717:" Invalid App Store Icon. The app store icon in the asset catalog in can't be transparent nor contain an alpha channel."」と表示される場合があります。
 
-AppStoreに表示されるPNG画像（1024 x 1024）については透明色が許可されていません。そのため、1ピクセルでも透明色が使われていると上記のエラーが発生します。
+App Storeに表示されるPNG画像（1024 x 1024）については透明色が許可されていません。そのため、1ピクセルでも透明色が使われていると上記のエラーが発生します。
 
 なお、アプリのアイコン画像については透明色が使われていてもエラーは発生しません。
 
@@ -208,7 +208,7 @@ AppStoreに表示されるPNG画像（1024 x 1024）については透明色が�
 
 1. 手順8が完了したら、しばらく待ちます。
 2. 「App Store Connect: Version 1.0 (1) for MyApp has completed processing.」という件名のメールが届きます。
-3. メールが届いたら、Safariを起動して[AppStore Connect](https://appstoreconnect.apple.com)を開きます。
+3. メールが届いたら、Safariを起動して[App Store Connect](https://appstoreconnect.apple.com)を開きます。
 4. My Appを選択します。
 5. 編集途中のアプリを選択します。
 6. Buildの右側にある「+」ボタンを押します。
@@ -234,15 +234,15 @@ AppStoreに表示されるPNG画像（1024 x 1024）については透明色が�
 6. しばらく待ちます。審査結果のメールが届くまで数時間から数日かかる場合があります。
 7. 審査を通過すると「Your submission was accepted...」という件名のメールが届きます。今回はアプリの公開日を指定していないため、通常は直後に「MyApp is now "Ready for Sale", ...」という件名のメールが届きます。
 
-お疲れ様でした！以上でアプリ公開の手順は完了です。AppStoreでアプリが公開されていることを確認してください。
+お疲れ様でした！以上でアプリ公開の手順は完了です。App Storeでアプリが公開されていることを確認してください。
 
-### （補足）AppStoreの検索に表示されない？
+### （補足）App Storeの検索に表示されない？
 
-レビューを通過してAppStoreにアプリが登録されても、数時間はAppStoreの検索に表示されません。この待機期間もアプリの共有リンクは取得可能ですので、SNSなどでシェアすることは可能です。
+レビューを通過してApp Storeにアプリが登録されても、数時間はApp Storeの検索に表示されません。この待機期間もアプリの共有リンクは取得可能ですので、SNSなどでシェアすることは可能です。
 
-1. Safariで[AppStore Connect](https://appstoreconnect.apple.com)を開きます。
+1. Safariで[App Store Connect](https://appstoreconnect.apple.com)を開きます。
 2. 画面左側のメニューからApp Informationを選択します。
-3. View on AppStoreボタンを押します。AppStoreの画面に移動したら、Shareボタンを押して共有リンクを取得します。
+3. View on App Storeボタンを押します。App Storeの画面に移動したら、Shareボタンを押して共有リンクを取得します。
 
 ## おわりに
 
