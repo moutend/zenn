@@ -1,23 +1,23 @@
 ---
-title: "（2022年版）iOSアプリをAppStoreで公開する手順まとめ"
+title: "（2022年版）iOSアプリをApp Storeで公開する手順まとめ"
 emoji: "✨"
 type: "tech"
-topics: [iOS, iPhone, アプリ開発, Apple, AppStore]
+topics: [iOS, iPhone, アプリ開発, Apple, App Store]
 published: true
 ---
 ## はじめに
 
 **追記** 2024年版の記事を作成しました。手順がより簡単かつ短くなっていますので、はじめてアプリを作成される場合は2024年版の記事を参考にしてください。
 
-[（2024年版）iOSアプリをAppStoreで公開する手順まとめ - Zenn](https://zenn.dev/moutend/articles/59bddeac3ff3d3)
+[（2024年版）iOSアプリをApp Storeで公開する手順まとめ - Zenn](https://zenn.dev/moutend/articles/59bddeac3ff3d3)
 
-**追記おわり**
+追記おわり
 
-iOSアプリをAppStoreで公開する手順をまとめました。以下の点に注意して読み進めてください。
+iOSアプリをApp Storeで公開する手順をまとめました。以下の点に注意して読み進めてください。
 
 1. Apple Developerの登録手順については説明しません。登録が終わった後にこの記事を読み進めてください。
 2. 無料アプリを前提に説明します。有料アプリの公開手順については説明しません。
-3. 記事の公開後にApple DeveloperやAppStore Connectサイトの外観が変わるかもしれません。そのため、あえてスクリーンショットは掲載していません。
+3. 記事の公開後にApple DeveloperやApp Store Connectサイトの外観が変わるかもしれません。そのため、あえてスクリーンショットは掲載していません。
 
 動作検証については以下の環境で行いました。
 
@@ -69,13 +69,13 @@ iPhone向けアプリの申請には5.5インチと6.5インチ、2種類のス�
 12. Registerボタンを押します。
 13. おわり
 
-## （手順3）アプリをAppStore Connectに登録する
+## （手順3）アプリをApp Store Connectに登録する
 
-1. [AppStore Connect](https://appstoreconnect.apple.com)を開きます。
+1. [App Store Connect](https://appstoreconnect.apple.com)を開きます。
 2. My Appを選択します。
 3. Appsの右側にある「+」ボタンを押すと新規作成ダイアログが表示されます。
 4. プラットフォームとしてiOSにチェックを入れます。
-5. アプリの名前を入力します。すでにAppStoreで使われている名前を指定することはできません。
+5. アプリの名前を入力します。すでにApp Storeで使われている名前を指定することはできません。
 6. Bundle IDとして手順2で作成したApp IDを選択します。
 6. SKUを入力します。詳細は次の補足を読んでください。
 7. 言語を設定します。
@@ -89,14 +89,14 @@ SKU（Stock Keeping Unit：在庫管理単位）はApple社がアプリの売り
 
 SKUに命名規則はありません。自由に名前を決めることができます。ただし、`App001`のように適当な名前をつけると紛らわしいので、おすすめしません。私の場合、Bundle IDが`com.example.MyApp`ならSKUは`ComExampleMyApp`のように設定しています。
 
-App IDとBundle IDは同じものです。Apple DeveloperではApp IDと表示されていたり、AppStore ConnectではBundle IDと表示されていたり、表記が統一されていないようです。
+App IDとBundle IDは同じものです。Apple DeveloperではApp IDと表示されていたり、App Store ConnectではBundle IDと表示されていたり、表記が統一されていないようです。
 
 ## （手順4）アプリの一般情報を編集する
 
 1. 手順1で作成したスクリーンショットを設定します。iPadのスクリーンショットについては設定不要です。
 2. Promotional Text（アプリのキャッチコピー）を入力します。
 3. Description（アプリの説明）を入力します。
-4. Keywords（AppStoreの検索キーワード）を入力します。「aaa,bbb,ccc」のようにカンマ区切りで入力します。
+4. Keywords（App Storeの検索キーワード）を入力します。「aaa,bbb,ccc」のようにカンマ区切りで入力します。
 5. Support URL（アプリの公式サイトURL）を入力します。私の場合はGitHub Pagesを利用してアプリの説明ページを作成しました。twitterアカウントのURLなどでも構わないようです。
 6. Buildは設定せず空欄のままにします。
 7. Sign-In Informationを設定します。ログイン不要で使えるアプリの場合は「Sign-in required」のチェックを外します。
@@ -158,7 +158,7 @@ Bit codeはiOS 9から導入された機能です。この機能はアプリ配�
 
 アプリをアップロードすると「ITMS-90717:" Invalid App Store Icon. The app store icon in the asset catalog in can't be transparent nor contain an alpha channel."」と表示される場合があります。
 
-AppStoreに表示されるPNG画像（1024 x 1024）については透明色が許可されていません。そのため、1ピクセルでも透明色が使われていると上記のエラーが発生します。
+App Storeに表示されるPNG画像（1024 x 1024）については透明色が許可されていません。そのため、1ピクセルでも透明色が使われていると上記のエラーが発生します。
 
 なお、アプリのアイコン画像については透明色が使われていてもエラーは発生しません。
 
@@ -177,7 +177,7 @@ AppStoreに表示されるPNG画像（1024 x 1024）については透明色が�
 
 1. 手順8が完了したら、しばらく待ちます。
 2. 「App Store Connect: Version 1.0 (1) for MyApp has completed processing.」という件名のメールが届きます。
-3. メールが届いたら、Safariを起動して[AppStore Connect](https://appstoreconnect.apple.com)を開きます。
+3. メールが届いたら、Safariを起動して[App Store Connect](https://appstoreconnect.apple.com)を開きます。
 4. My Appを選択します。
 5. 編集途中のアプリを選択します。
 6. Buildの右側にある「+」ボタンを押します。
@@ -204,7 +204,7 @@ AppStoreに表示されるPNG画像（1024 x 1024）については透明色が�
 7. しばらく待ちます。審査結果のメールが届くまで数時間から数日かかる場合があります。
 8. 審査を通過すると「Your submission was accepted...」という件名のメールが届きます。その直後に「MyApp is now "Ready for Sale", ...」という件名のメールが届きます。
 
-お疲れ様でした。以上でアプリ公開の手順は完了です。AppStoreでアプリが公開されていることを確認してください。
+お疲れ様でした。以上でアプリ公開の手順は完了です。App Storeでアプリが公開されていることを確認してください。
 
 ## おわりに
 
