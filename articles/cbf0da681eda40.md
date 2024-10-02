@@ -3,7 +3,7 @@ title: "App Storeのレビューを通過したのにRemoved from App Storeと�
 emoji: "📘"
 type: "tech"
 topics: [Apple, iOS, "App Store"]
-published: false
+published: true
 ---
 ## 状況
 
