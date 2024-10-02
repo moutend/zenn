@@ -9,9 +9,13 @@ published: false
 
 以下は私の個人アカウントでApp Store Connectのアプリ一覧画面を撮影したスクリーンショットです。「Sonic Motion」アプリのステータスに注目してください。「Removed from App Store」と表示されています。もちろん削除した覚えはありません。
 
-図1 App Store Connectのスクリーンショット。Removed from App Storeと表示されている。
+![画像1 App Store Connectのスクリーンショット。Removed from App Storeと表示されている。](https://storage.googleapis.com/zenn-user-upload/b16b8c7a3c84-20241002.png)
+
+画像1 App Store Connectのスクリーンショット。Removed from App Storeと表示されている。
 
 このアプリはレビューを通過しています。アプリ詳細ページに移動すると「Ready for Distribution」と表示されます。ちぐはぐな状況です。
+
+![画像2 アプリ詳細ページのスクリーンショット。こちらはステータスとして「Ready for Distribution」が表示されている。](https://storage.googleapis.com/zenn-user-upload/2db58eed541c-20241002.png)
 
 画像2 アプリ詳細ページのスクリーンショット。こちらはステータスとして「Ready for Distribution」が表示されている。
 
