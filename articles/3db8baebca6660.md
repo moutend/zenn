@@ -11,16 +11,13 @@ published: false
 
 ### 前提
 
-### この記事で説明しないこと
+記事を読み進める際は以下の点に注意してください。
 
-以下の内容については記事中で説明しません。
-
-- AWSアカウントの作成方法や作業用ユーザーのIAM設定方法
-- HTMLやCSSの書き方
-
-### この記事の目標
-
-`<h1>It works!</h1>`と書かれたHTMLファイルをデプロイします。その後、ブラウザとcurlコマンドを利用してWebサイトにアクセスし、デプロイされたHTMLファイルが返されることを確認します。期待どおりのレスポンスが返されたら目標達成とします。
+1. 作業はブラウザで行います。Windows / macOS / Linuxどのような環境でも参考になるはずです。
+2. AWSアカウントの作成方法や作業用のユーザーを準備する方法は説明しません。
+3. デプロイしたHTMLがブラウザで表示できたら作業完了とします。HTMLやCSSの書き方といったWebサイト制作の解説は行いません。
+4. 構築するWebサイトに動的な要素がないため改竄などの攻撃リスクは低いと判断しました。レスポンスヘッダーの設定などは行わないためセキュリティは最低限しか考慮していません。
+5. あくまで学習用のため、CloudFrontのキャッシュチューニングは行いません。またロギングなど運用に関わる設定も行いません。
 
 ### 利用するサービス一覧
 
@@ -35,7 +32,11 @@ published: false
 
 ### 費用について
 
-独自ドメインの購入費用を除き、Webサイトを構築した直後に削除すれば費用は数十円ほどに抑えられます。ただし、構築したWebサイトをそのまま放置するとアクセス数に応じて意図せず課金される恐れがあります。学習後は各自の責任で削除してください。
+ACMで証明書を発行する費用は無料です。そのほかのサービスには従量課金で多少の費用が発生します。
+
+独自ドメインの購入費用を除き、Webサイトを構築した直後に削除すれば費用は数十円ほどに抑えられるはずです。ただし、構築したWebサイトをそのまま放置するとアクセス数に応じて意図せず課金される恐れがあります。
+
+学習後は各自の責任で構築したWebサイトを削除してください。
 
 ## 作業手順
 
@@ -44,8 +45,12 @@ published: false
 1. Route 53でドメインを購入する
 2. ACMで証明書を発行する
 3. S3バケットを作成する
-4. CloudFront Distributionを作成する
-5. Route 53でレコードを追加する
+4. S3バケットにHTMLファイルを配置する
+5. CloudFront Distributionを作成する
+6. S3にバケットポリシーを設定する
+7. CloudFront Distributionが発行したドメインでHTTPSアクセスできるか確認する
+8. CloudFront DistributionにAlternate Domain Name (CNAME)と証明書を設定する
+9. Route 53でCloudFront Distributionのエイリアスレコードを追加する
 
 ### （手順1）Route 53でドメインを購入する
 
@@ -263,4 +268,12 @@ Webサイトが表示されない場合、S3バケットポリシーに不備が
 
 ただし、Record nameのテキストフィールドは空欄にしてください。Requiredと書かれていますが、空欄のままで作成可能です。
 
+## おわりに
+
+大した作業はしていないのに、真心こめて手作業すると極めて面倒であると実感いただけたはずです。自動化しましょう！！！
+
 ## 参考資料
+
+1. [Registering a new domain - Amazon Route 53](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/domain-register.html)
+2. [Get started with a basic CloudFront distribution - Amazon CloudFront](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/GettingStarted.SimpleDistribution.html)
+3. [Get started with a secure static website - Amazon CloudFront](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/getting-started-secure-static-website-cloudformation-template.html)
