@@ -2,7 +2,7 @@
 title: "（AWS）S3とCloudFrontを利用して独自ドメインが設定された性的なWebサイトを構築する"
 emoji: "😺"
 type: "tech"
-topics: [AWS, S3, CloudFront, Route53, ACM]
+topics: [AWS, S3, CloudFront, Route53]
 published: false
 ---
 ## はじめに
@@ -23,8 +23,8 @@ published: false
 
 構築にあたり、以下のサービスを利用します。
 
-- Route 53: ドメインの購入とDNSレコードの設定に利用します。
 - ACM: TLS証明書の発行に利用します。
+- Route 53: ドメインの購入とDNSレコードの設定に利用します。
 - S3: Webサイトのアセット（.htmlファイルや.cssファイル）を格納するストレージとして利用します。
 - CloudFront: S3をオリジンとして設定可能なCDNとして利用します。
 
@@ -277,3 +277,5 @@ Webサイトが表示されない場合、S3バケットポリシーに不備が
 1. [Registering a new domain - Amazon Route 53](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/domain-register.html)
 2. [Get started with a basic CloudFront distribution - Amazon CloudFront](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/GettingStarted.SimpleDistribution.html)
 3. [Get started with a secure static website - Amazon CloudFront](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/getting-started-secure-static-website-cloudformation-template.html)
+4. [IAM identifiers - AWS Identity and Access Management](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html)
+5. [IAM JSON policy reference - AWS Identity and Access Management](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies.html)
