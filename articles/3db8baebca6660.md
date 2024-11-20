@@ -1,5 +1,5 @@
 ---
-title: "（AWS）S3とCloudFrontを利用して独自ドメインが設定された性的なWebサイトを構築する"
+title: "（AWS）S3とCloudFrontを利用して独自ドメインが設定された静的なWebサイトを構築する"
 emoji: "😺"
 type: "tech"
 topics: [AWS, S3, CloudFront, Route53]
