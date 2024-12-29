@@ -3,7 +3,7 @@ title: 今のAIは「待つ」ことができない
 emoji: "🤖"
 type: "idea" # tech: 技術記事 / idea: アイデア
 topics: [AI, ChatGPT, Gemini]
-published: false
+published: true
 ---
 ## 賢いAI、だがしかし
 
