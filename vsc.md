@@ -17,3 +17,7 @@ Open a file which can be debugged or run. Run and Debug To customize Run and Deb
 ### Extensions (Shift+Command+X)
 
 No extensions found.
+
+- Close All [Command+K W]
+- Close Saved [Command+K U]
+- Split Editor Right (Command+\) [Option] Split Editor Down button, group
