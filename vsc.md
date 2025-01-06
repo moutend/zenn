@@ -21,3 +21,8 @@ No extensions found.
 - Close All [Command+K W]
 - Close Saved [Command+K U]
 - Split Editor Right (Command+\) [Option] Split Editor Down button, group
+- Show All Commands Shift+Command+P
+- Go to File Command+P
+- Start Debugging F5
+- Toggle Terminal Control+`
+- Open Settings Command+,
