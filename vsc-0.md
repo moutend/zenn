@@ -39,3 +39,25 @@ Watch Tutorial button
 
  Mark Done button, group 7 of 8
 Next Section  button, group 8 of 8
+
+### Code with extensions
+
+Extensions are VS Code's power-ups. They range from handy productivity hacks, expanding out-of-the-box features, to adding completely new capabilities.
+Browse Popular Extensions button
+
+### Built-in terminal
+
+Quickly run shell commands and monitor build output, right next to your code.
+Open Terminal button
+Tip: Use keyboard shortcut Control+`
+
+### Track your code with Git
+
+Set up the built-in version control for your project to track your changes and collaborate with others.
+Clone Repository button
+
+### Customize your shortcuts
+
+Once you have discovered your favorite commands, create custom keyboard shortcuts for instant access.
+Keyboard Shortcuts button
+Tip: Use keyboard shortcut Command+K Command+S
