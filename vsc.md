@@ -26,3 +26,4 @@ No extensions found.
 - Start Debugging F5
 - Toggle Terminal Control+`
 - Open Settings Command+,
+Clear Notification (⌘Backspace) button, group
