@@ -3,7 +3,7 @@ title: "（スクリーンリーダーのユーザー対象）Google Forms送信
 emoji: "🤖"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: []
-published: false
+published: true
 ---
 ## はじめに
 
