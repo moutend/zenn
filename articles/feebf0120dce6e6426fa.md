@@ -1,6 +1,6 @@
 ---
 title: "（2022年版）iOSアプリをApp Storeで公開する手順まとめ"
-emoji: "✨"
+emoji: "🍎"
 type: "tech"
 topics: [iOS, iPhone, アプリ開発, Apple, App Store]
 published: true
