@@ -1,6 +1,6 @@
 ---
 title: "App Storeのレビューを通過したのにRemoved from App Storeと表示される場合の対処法"
-emoji: "📘"
+emoji: "🍎"
 type: "tech"
 topics: [Apple, iOS, "App Store"]
 published: true
